@@ -1,7 +1,7 @@
 <?php
 
-$url = "http://www.btctrade.com/coin/rmb/btc/trust.js";
-//$url = "trust.json";
+//$url = "http://www.btctrade.com/coin/rmb/btc/trust.js";
+$url = "trust.json";
 $contents = file_get_contents($url);
 $salelist = json_decode($contents);
 
@@ -15,7 +15,7 @@ foreach ($salelist as $salemethod => $value1) {
         {
             if ($saleinfo == 'p') {
                 $mount_group = $saleamount;
-                echo "The value $mount_group has ";
+                echo "The price $mount_group has ";
 
             }
             if ($saleinfo == 'n') {
