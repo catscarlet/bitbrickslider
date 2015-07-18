@@ -1,13 +1,7 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Let's get value</title>
-</head>
-
 <?php
 
-//$url = "http://www.btctrade.com/coin/rmb/btc/trust.js";
-$url = "trust.json";
+$url = "http://www.btctrade.com/coin/rmb/btc/trust.js";
+//$url = "trust.json";
 $contents = file_get_contents($url);
 $salelist = json_decode($contents);
 
@@ -16,7 +10,7 @@ foreach ($salelist as $salemethod => $value1) {
     $value_sum = 0 ;
     foreach ($value1 as $saleindex => $value2)
     {
-        echo "【" . $saleindex . "】";
+        echo "[" . $saleindex . "]";
         foreach ($value2 as $saleinfo => $saleamount)
         {
             if ($saleinfo == 'p') {
