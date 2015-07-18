@@ -1,28 +1,28 @@
 <?php
-//$trustvalue = readfile("trust.json");
+
 $url = "trust.json";
 $contents = file_get_contents($url);
-//echo $contents;
-//echo json_decode($contents,false);
-//var_dump(json_decode($contents,true));
+$salelist = json_decode($contents);
 
-$atr = json_decode($contents);
-
-//echo $atr["buy"]["0"]["p"] ;
-//var_dump(json_decode($contents,false));
-
-foreach ($atr as $key1 => $value1) {
-    echo $key1 . "<br>";
-    foreach ($value1 as $key2 => $value2)
+foreach ($salelist as $salemethod => $value1) {
+    echo $salemethod . "<br>";
+    foreach ($value1 as $saleindex => $value2)
     {
-        echo $key2 . "<br>";
-        foreach ($value2 as $key3 => $value3)
+        //echo $saleindex . "<br>";
+        foreach ($value2 as $saleinfo => $saleamount)
         {
+            if ($saleinfo == 'p') {
+                $mount_group = $saleamount;
+                echo "The value $mount_group has ";
 
-            //
-                echo $key3 ." = ". $value3 . "<br>";
+            }
+            if ($saleinfo == 'n') {
+                $value_group = $saleamount;
+                echo "$value_group , value ". $value_group*$mount_group . "<br>";
+            }
+
         }
-    # code...
+
 }
 
 
