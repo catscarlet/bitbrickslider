@@ -1,35 +1,25 @@
 <?php
 
-//$url = "http://www.btctrade.com/coin/rmb/btc/trust.js";
-$url = "trust.json";
+$url = 'trust.json';
+$url = "http://www.btctrade.com/coin/rmb/btc/trust.js";
 $contents = file_get_contents($url);
-$salelist = json_decode($contents);
+$dealList = json_decode($contents, true);
 
-foreach ($salelist as $salemethod => $value1) {
-    echo $salemethod . "<br>";
-    $value_sum = 0 ;
-    foreach ($value1 as $saleindex => $value2)
-    {
-        echo "[" . $saleindex . "]";
-        foreach ($value2 as $saleinfo => $saleamount)
-        {
-            if ($saleinfo == 'p') {
-                $mount_group = $saleamount;
-                echo "The price $mount_group has ";
+$buy = valueCalc($dealList['buy']);
+$sale = valueCalc($dealList['sale']);
 
-            }
-            if ($saleinfo == 'n') {
-                $value_group = $saleamount;
-                echo "$value_group , value ". $value_group*$mount_group ." . ";
-                $value_sum = $value_sum+  $value_group*$mount_group;
-                echo "and all beyond this value is ". $value_sum ;
-                echo "<br>";
-            }
+echo nl2br(print_r($buy, true));
+echo nl2br(print_r($sale, true));
 
-        }
+function valueCalc($dealList)
+{
+    $atThisValueTmp = 0;
+    foreach ($dealList as $id => $data) {
+        $result['value'][$id] = $data['p'];
+        $result['amount'][$id] = $data['n'];
+        $result['atThisValue'][$id] = $atThisValueTmp + $data['p'] * $data['n'];
+        $atThisValueTmp = $result['atThisValue'][$id];
+    }
 
+    return $result;
 }
-
-}
-
- ?>
