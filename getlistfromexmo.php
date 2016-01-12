@@ -1,41 +1,28 @@
 <?php
 
 //system("/bin/bash /var/www/getcalccoinvaluephp/wgetpost.sh");
-$url = "ordersActive.json";
+$url = 'ordersActive.json';
 $contents = file_get_contents($url);
-$salelist = json_decode($contents);
-$saledata = $salelist->data;
-$saleorder = $saledata->orders;
-$saleorder_buy =$saleorder->buy;
-$saleorder_buy_result = $saleorder_buy_amount = $saleorder_buy_price = $saleorder_buy_sum = 0;
 
-foreach ($saleorder_buy as $saleindex => $saleorder_buy_info) {
+$dealList = json_decode($contents, true);
 
-foreach ($saleorder_buy_info as $saleorder_buy_name => $saleorder_buy_value)
+$buy = valueCalc($dealList['data']['orders']['buy']);
+$sale = valueCalc($dealList['data']['orders']['sell']);
+
+$result = array('buy' => $buy,'sale' => $sale);
+
+echo json_encode($result);
+
+function valueCalc($dealList)
 {
-#    echo $saleorder_buy_value;
-    switch ($saleorder_buy_name) {
-
-        case 'result':
-                $saleorder_buy_result = $saleorder_buy_value;
-                $saleorder_buy_sum = $saleorder_buy_sum + $saleorder_buy_result;
-                break;
-
-        case 'amount':
-                $saleorder_buy_amount = $saleorder_buy_value;
-                break;
-
-        case 'price':
-                $saleorder_buy_price = $saleorder_buy_value;
-                echo "[" . $saleindex . "]The price ".$saleorder_buy_price." has ".$saleorder_buy_amount." , result is ".$saleorder_buy_result." , and all beyond this value is ".$saleorder_buy_sum."<br>" ;
-                break;
-
-        default:
-            echo "Error !!!";
-            break;
+    $atThisValueTmp = 0;
+    foreach ($dealList as $id => $data) {
+        $result['value'][$id] = $data[0];
+        $result['amount'][$id] = $data[1];
+        $result['valueXamount'][$id] = $data[2];
+        $result['atThisValue'][$id] = $atThisValueTmp + $data[0] * $data[1];
+        $atThisValueTmp = $result['atThisValue'][$id];
     }
 
+    return $result;
 }
-}
-
-?>
