@@ -4,7 +4,8 @@ function getValueFromBtctrade() {
     type: 'GET',
     url: url,
     success: function(msg) {
-      console.log(msg);
+      var value = JSON.parse(msg);
+      console.log(value);
     }
   });
 }
@@ -15,7 +16,8 @@ function getValueFromExmo() {
     type: 'GET',
     url: url,
     success: function(msg) {
-      console.log(msg);
+      var value = JSON.parse(msg);
+      console.log(value);
     }
   });
 }
