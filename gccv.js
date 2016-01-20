@@ -4,8 +4,7 @@ function getValueFromBtctrade() {
     type: 'GET',
     url: url,
     success: function(msg) {
-      var value = JSON.parse(msg);
-      console.log(value);
+      valueFromBtctrade = JSON.parse(msg);
     }
   });
 }
@@ -16,18 +15,20 @@ function getValueFromExmo() {
     type: 'GET',
     url: url,
     success: function(msg) {
-      var value = JSON.parse(msg);
-      console.log(value);
+      valueFromExmo = JSON.parse(msg);
     }
   });
 }
 
 $(document).ready(function() {
+  getValueFromBtctrade();
+  getValueFromExmo();
+
   $('#btctrade').click(function() {
-    getValueFromBtctrade();
+    console.log(valueFromBtctrade);
   });
   $('#exmo').click(function() {
-    getValueFromBtctrade();
+    console.log(valueFromExmo);
   });
 
 });
