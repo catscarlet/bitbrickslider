@@ -4,13 +4,22 @@
 <head>
   <meta charset="utf-8">
   <title>Get Calculate Coin Value</title>
-  <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
-  <script type="text/javascript" src="gccv.js"></script>
+  <script type="text/javascript" src="lib/js/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="js/gccv.js"></script>
+  <script type="text/javascript" src="js/drawCharts.js"></script>
+  <script type="text/javascript" src="js/drawSlider.js"></script>
+  <script type="text/javascript" src="lib/js/highchart/highcharts.js"></script>
+  <script type="text/javascript" src="lib/js/jquery-ui-1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="lib/js/jquery-ui-1.11.4/jquery-ui.css">
 </head>
 
 <body>
-<button id="btctrade" type="button" name="button">btctrade</button>
-<button id="exmo" type="button" name="button">exmo</button>
+  <button id="btctrade" type="button" name="button">btctrade</button>
+  <button id="exmo" type="button" name="button">exmo</button>
+  <button id="draw" type="button" name="button">draw</button>
+  <button id="getSlider" type="button" name="button">getSliderValue</button>
+  <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+  <div id="slider"></div>
 </body>
 
 </html>

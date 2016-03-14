@@ -17,10 +17,10 @@ function valueCalc($dealList)
 {
     $atThisValueTmp = 0;
     foreach ($dealList as $id => $data) {
-        $result['value'][$id] = $data[0];
-        $result['amount'][$id] = $data[1];
-        $result['valueXamount'][$id] = $data[2];
-        $result['atThisValue'][$id] = $atThisValueTmp + $data[0] * $data[1];
+        $result['valuePerCoin'][$id] = (float) $data[0];
+        $result['amount'][$id] =(float)  $data[1];
+        $result['sumOfValue'][$id] = (float) $data[2];
+        $result['sumOfCoins'][$id] = $atThisValueTmp + $data[0] * $data[1];
         $atThisValueTmp = $result['atThisValue'][$id];
     }
 
