@@ -1,55 +1,48 @@
-function getValueFromBtctrade() {
-    url = 'getlistfrombtctrade.php';
-    $.ajax({
-        type: 'GET',
-        url: url,
-        success: function(msg) {
-            valueFromBtctrade = JSON.parse(msg);
-        }
-    });
-}
+var btcOfBtctrade;
+var btcOfExmo;
+
 
 function getValueFromExmo() {
-    url = 'exmo/getlistfromexmo.php';
+    url = 'exmo/getbtclistfromexmo.php';
     $.ajax({
         type: 'GET',
         url: url,
         success: function(msg) {
             valueFromExmo = JSON.parse(msg);
-            console.log(valueFromExmo);
-            //drawCharts(data);
-            return valueFromExmo;
+            //console.log(valueFromExmo);
+            btcOfExmo = valueFromExmo;
+            //return valueFromExmo;
         }
     });
 }
 
 function getDrawBtctrade() {
-    url = 'btctrade/getlistfrombtctrade.php';
+    url = 'btctrade/getbtclistfrombtctrade.php';
     $.ajax({
         type: 'GET',
         url: url,
         success: function(msg) {
             data = JSON.parse(msg);
-            console.log(data);
-            //drawCharts(data);
-            return data;
+            //console.log(data);
+            btcOfBtctrade = data;
+            //return data;
         }
     });
 }
 
-var dataOfBtctrade;
+
 
 $(document).ready(function() {
 
-    dataOfBtctrade = getDrawBtctrade();
-    dataOfExmo = getValueFromExmo();
+    getDrawBtctrade();
+    getValueFromExmo();
 
     $('#btctrade').click(function() {
-        console.log(valueFromBtctrade);
+        console.log(btcOfBtctrade);
     });
 
     $('#exmo').click(function() {
-        console.log(valueFromExmo);
+        console.log(btcOfExmo);
     });
 
     $('#draw').click(function() {

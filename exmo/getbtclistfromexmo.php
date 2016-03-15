@@ -16,12 +16,14 @@ echo json_encode($result);
 function valueCalc($dealList)
 {
     $atThisValueTmp = 0;
+    $atThisCoinsTmp = 0;
     foreach ($dealList as $id => $data) {
         $result['valuePerCoin'][$id] = (float) $data[0];
-        $result['amount'][$id] =(float)  $data[1];
-        $result['sumOfValue'][$id] = (float) $data[2];
-        $result['sumOfCoins'][$id] = $atThisValueTmp + $data[0] * $data[1];
-        $atThisValueTmp = $result['atThisValue'][$id];
+        $result['amount'][$id] = (float) $data[1];
+        $result['sumOfValue'][$id] = (float) $data[2] + $atThisValueTmp;
+        $result['sumOfCoins'][$id] = $atThisCoinsTmp + $result['amount'][$id];
+        $atThisValueTmp = $result['sumOfValue'][$id];
+        $atThisCoinsTmp = $result['sumOfCoins'][$id];
     }
 
     return $result;

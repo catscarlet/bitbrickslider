@@ -1,7 +1,7 @@
 <?php
 
-$url = 'trust.json';
-//$url = 'http://www.btctrade.com/coin/rmb/btc/trust.js';
+$url = 'trust_doge.json';
+//$url = 'http://www.btctrade.com/coin/rmb/doge/trust.js';
 $contents = file_get_contents($url);
 $dealList = json_decode($contents, true);
 $buy = valueCalc2($dealList['buy']);
@@ -34,7 +34,7 @@ function valueCalc2($dealList)
     foreach ($dealList as $id => $data) {
         $result['valuePerCoin'][$id] = (float) $data['p'];
         $result['amount'][$id] = (float) $data['n'];
-        $result['sumOfValue'][$id] = ($result['valuePerCoin'][$id] * $result['amount'][$id])  + $atThisValueTmp;
+        $result['sumOfValue'][$id] = ($result['valuePerCoin'][$id] * $result['amount'][$id]) + $atThisValueTmp;
         $result['sumOfCoins'][$id] = $data['n']  + $atThisCoinsTmp;
         $atThisValueTmp = $result['sumOfValue'][$id];
         $atThisCoinsTmp = $result['sumOfCoins'][$id];
