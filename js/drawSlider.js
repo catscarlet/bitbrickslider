@@ -8,7 +8,7 @@
               console.log('start');
           },
           stop: function(event, ui) {
-              console.log('s_to_p');
+              console.log('stop');
               console.log(ui.value);
           },
           slide: function(event, ui) {
@@ -25,20 +25,24 @@ function getSliderValue() {
 }
 
 function r0b1b2ud2d1r(r0) {
-    b1 = r0_to_b1(r0);
+    console.log('r0:' + r0);
+    var b1 = rmb_to_btcofbtctrade(r0);
     console.log('b1:' + b1);
-    b2 = b1_to_b2(b1);
+    var b2 = btcofbtctrade_to_btcofexmo(b1);
     console.log('b2:' + b2);
-    u0 = b2_to_u0(b2);
+    var u0 = btcofexmo_to_usd(b2);
     console.log('u0:' + u0);
-
 }
 
-function r0_to_b1(r0) {
-    i = 0;
-    detectIt = true;
+function rmb_to_btcofbtctrade(pay) {
+    var i = 0;
+    var detectIt = true;
+    var detectIndex;
+    var remain;
+    var exchangeCount;
+
     while (detectIt) {
-        if (r0 > btcOfBtctrade.buy.sumOfValue[i]) {
+        if (pay > btcOfBtctrade.buy.sumOfValue[i]) {
             i++;
             if (i >= btcOfBtctrade.buy.sumOfValue.length) {
                 console.log('error');
@@ -50,31 +54,36 @@ function r0_to_b1(r0) {
         }
     }
 
-    console.log('detectIndex:' + detectIndex);
+    //console.log('detectIndex:' + detectIndex);
     if (detectIndex > 0) {
-        remain = r0 - btcOfBtctrade.buy.sumOfValue[i - 1];
+        remain = pay - btcOfBtctrade.buy.sumOfValue[i - 1];
         exchangeCount = btcOfBtctrade.buy.sumOfCoins[i - 1];
     }else {
-        remain = r0;
+        remain = pay;
         exchangeCount = 0;
     }
 
-    console.log('exchangeCount1:' + exchangeCount);
+    //console.log('exchangeCount1:' + exchangeCount);
     exchangeCount = exchangeCount + remain / btcOfBtctrade.buy.valuePerCoin[i];
-    console.log('exchangeCount2:' + exchangeCount);
+    //console.log('exchangeCount2:' + exchangeCount);
     return exchangeCount;
 }
 
-function b1_to_b2(b1) {
-    b2 = b1 - 0.001;
-    return b2;
+function btcofbtctrade_to_btcofexmo(btcofbtctrade) {
+    var btcofexmo;
+    btcofexmo = btcofbtctrade - 0.001;
+    return btcofexmo;
 }
 
-function b2_to_u0(b2) {
-    i = 0;
-    detectIt = true;
+function btcofexmo_to_usd(pay) {
+    var i = 0;
+    var detectIt = true;
+    var detectIndex;
+    var remain;
+    var exchangeCount;
+
     while (detectIt) {
-        if (b2 > btcOfExmo.sale.sumOfCoins[i]) {
+        if (pay > btcOfExmo.sale.sumOfCoins[i]) {
             i++;
             if (i >= btcOfExmo.sale.sumOfCoins.length) {
                 console.log('error');
@@ -86,53 +95,52 @@ function b2_to_u0(b2) {
         }
     }
 
-    console.log('detectIndex:' + detectIndex);
+    //console.log('detectIndex:' + detectIndex);
     if (detectIndex > 0) {
-        remain = b2 - btcOfExmo.sale.sumOfCoins[i - 1];
+        remain = pay - btcOfExmo.sale.sumOfCoins[i - 1];
         exchangeCount = btcOfExmo.sale.sumOfValue[i - 1];
     }else {
-        remain = b2;
+        remain = pay;
         exchangeCount = 0;
     }
 
-    console.log('exchangeCount1:' + exchangeCount);
+    //console.log('exchangeCount1:' + exchangeCount);
     exchangeCount = exchangeCount + remain * btcOfExmo.sale.valuePerCoin[i];
-    console.log('exchangeCount2:' + exchangeCount);
+    //console.log('exchangeCount2:' + exchangeCount);
     return exchangeCount;
 }
 
-function u0_to_d2(u0) {
-    i = 0;
-    detectIt = true;
-    while (detectIt) {
-        if (b2 > btcOfExmo.sale.sumOfCoins[i]) {
-            i++;
-            if (i >= btcOfExmo.sale.sumOfCoins.length) {
-                console.log('error');
-                return false;
-            }
-        } else {
-            detectIt = false;
-            detectIndex = i;
-        }
-    }
+function usd_to_dogeofexmo(pay) {
+      var i = 0;
+      var detectIt = true;
+      var detectIndex;
+      var remain;
+      var exchangeCount;
 
-    console.log('detectIndex:' + detectIndex);
-    if (detectIndex > 0) {
-        remain = b2 - btcOfExmo.sale.sumOfCoins[i - 1];
-        exchangeCount = btcOfExmo.sale.sumOfValue[i - 1];
-    }else {
-        remain = b2;
-        exchangeCount = 0;
-    }
+      while (detectIt) {
+          if (pay > btcOfBtctrade.buy.sumOfValue[i]) {
+              i++;
+              if (i >= btcOfBtctrade.buy.sumOfValue.length) {
+                  console.log('error');
+                  return false;
+              }
+          } else {
+              detectIt = false;
+              detectIndex = i;
+          }
+      }
 
-    console.log('exchangeCount1:' + exchangeCount);
-    exchangeCount = exchangeCount + remain * btcOfExmo.sale.valuePerCoin[i];
-    console.log('exchangeCount2:' + exchangeCount);
-    return exchangeCount;
-}
+      //console.log('detectIndex:' + detectIndex);
+      if (detectIndex > 0) {
+          remain = pay - btcOfBtctrade.buy.sumOfValue[i - 1];
+          exchangeCount = btcOfBtctrade.buy.sumOfCoins[i - 1];
+      }else {
+          remain = pay;
+          exchangeCount = 0;
+      }
 
-function d1_to_d2(d1) {
-    d2 = d1 * 0.95;
-    return d2;
-}
+      //console.log('exchangeCount1:' + exchangeCount);
+      exchangeCount = exchangeCount + remain / btcOfBtctrade.buy.valuePerCoin[i];
+      //console.log('exchangeCount2:' + exchangeCount);
+      return exchangeCount;
+  }
