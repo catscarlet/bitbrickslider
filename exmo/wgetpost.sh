@@ -1,2 +1,1 @@
-wget --post-file=post.json "https://exmo.com/api/book" -O ordersActive.json
-
+wget --post-file=post_btc.json "https://exmo.com/api/book" -O book_btc.json

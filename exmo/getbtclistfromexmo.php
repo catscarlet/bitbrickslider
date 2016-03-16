@@ -1,6 +1,8 @@
 <?php
 
 //system("/bin/bash /var/www/getcalccoinvaluephp/wgetpost.sh");
+//$data = file_get_contents('book_btc.json');
+
 $url = 'ordersActive.json';
 $contents = file_get_contents($url);
 
@@ -27,4 +29,25 @@ function valueCalc($dealList)
     }
 
     return $result;
+}
+
+function httpsRequest($url, $data = null)
+{
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+    if (!empty($data)) {
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+    }
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    $output = curl_exec($curl);
+    if(curl_errno($curl))
+    {
+        $this->_doLog("Curl Error:".curl_error($curl)." Request Url:".$url);
+    }
+    curl_close($curl);
+
+    return $output;
 }
