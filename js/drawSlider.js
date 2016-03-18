@@ -41,7 +41,17 @@ function r0b1b2ud2d1r(r0) {
     console.log('rmb' + rmb);
 }
 
-function rmb_to_btcofbtctrade(pay) {
+function rmbToBtcAtBtctrade(pay) {
+    return stepwiseBuy(pay, rmbToBtcAtBtctradeList);
+}
+
+function transBtcFromBtctrade(btc1) {
+    var btc2;
+    btc2 = btc1 - 0.001;
+    return btc2;
+}
+
+function btcToUsdAtExmo(pay) {
     var i = 0;
     var detectIt = true;
     var detectIndex;
@@ -49,9 +59,9 @@ function rmb_to_btcofbtctrade(pay) {
     var exchangeCount;
 
     while (detectIt) {
-        if (pay > btcOfBtctrade.buy.sumOfValue[i]) {
+        if (pay > usdToBtcAtExmoList.sale.sumOfCoins[i]) {
             i++;
-            if (i >= btcOfBtctrade.buy.sumOfValue.length) {
+            if (i >= usdToBtcAtExmoList.sale.sumOfCoins.length) {
                 console.log('error');
                 return false;
             }
@@ -63,6 +73,9 @@ function rmb_to_btcofbtctrade(pay) {
 
     //console.log('detectIndex:' + detectIndex);
     if (detectIndex > 0) {
+        remain = pay - usdToBtcAtExmoList.sale.sumOfCoins[i - 1];
+        exchangeCount = usdToBtcAtExmoList.sale.sumOfValue[i - 1];
+
         remain = pay - btcOfBtctrade.buy.sumOfValue[i - 1];
         exchangeCount = btcOfBtctrade.buy.sumOfCoins[i - 1];
     }else {
@@ -117,7 +130,7 @@ function btcofexmo_to_usd(pay) {
     return exchangeCount;
 }
 
-function usd_to_dogeofexmo(pay) {
+function usdToDogeAtExmo(pay) {
       var i = 0;
       var detectIt = true;
       var detectIndex;
@@ -152,13 +165,13 @@ function usd_to_dogeofexmo(pay) {
       return exchangeCount;
   }
 
-function dogeofexmo_to_dogeofbtctrade(dogeofexmo) {
-      var dogeofbtctrade;
-      dogeofbtctrade = dogeofexmo - 1;
-      return dogeofbtctrade;
+function transDogeAtexmo(doge1) {
+      var doge2;
+      doge2 = doge1 - 1;
+      return doge2;
   }
 
-function dogeofbtctrade_to_rmb(pay) {
+function DogeToRmbAtBtctrade(pay) {
     var i = 0;
     var detectIt = true;
     var detectIndex;
@@ -166,9 +179,9 @@ function dogeofbtctrade_to_rmb(pay) {
     var exchangeCount;
 
     while (detectIt) {
-        if (pay > dogeOfBtctrade.sale.sumOfCoins[i]) {
+        if (pay > rmbToDogeAtBtctradeList.sale.sumOfCoins[i]) {
             i++;
-            if (i >= dogeOfBtctrade.sale.sumOfCoins.length) {
+            if (i >= rmbToDogeAtBtctradeList.sale.sumOfCoins.length) {
                 console.log('error');
                 return false;
             }
@@ -180,15 +193,50 @@ function dogeofbtctrade_to_rmb(pay) {
 
     //console.log('detectIndex:' + detectIndex);
     if (detectIndex > 0) {
-        remain = pay - dogeOfBtctrade.sale.sumOfCoins[i - 1];
-        exchangeCount = dogeOfBtctrade.sale.sumOfValue[i - 1];
+        remain = pay - rmbToDogeAtBtctradeList.sale.sumOfCoins[i - 1];
+        exchangeCount = rmbToDogeAtBtctradeList.sale.sumOfValue[i - 1];
     }else {
         remain = pay;
         exchangeCount = 0;
     }
 
     //console.log('exchangeCount1:' + exchangeCount);
-    exchangeCount = exchangeCount + remain * dogeOfBtctrade.sale.valuePerCoin[i];
+    exchangeCount = exchangeCount + remain * rmbToDogeAtBtctradeList.sale.valuePerCoin[i];
     //console.log('exchangeCount2:' + exchangeCount);
+    return exchangeCount;
+}
+
+function btcToDogeAtExmo(pay) {
+    var i = 0;
+    var detectIt = true;
+    var detectIndex;
+    var remain;
+    var exchangeCount;
+
+    while (detectIt) {
+        if (pay > btcToDogefromexmoList.buy.sumOfCoins[i]) {
+            i++;
+            if (i >= btcToDogefromexmoList.buy.sumOfCoins.length) {
+                console.log('error');
+                return false;
+            }
+        } else {
+            detectIt = false;
+            detectIndex = i;
+        }
+    }
+
+    console.log('detectIndex:' + detectIndex);
+    if (detectIndex > 0) {
+        remain = pay - btcToDogefromexmoList.buy.sumOfCoins[i - 1];
+        exchangeCount = btcToDogefromexmoList.buy.sumOfValue[i - 1];
+    }else {
+        remain = pay;
+        exchangeCount = 0;
+    }
+
+    console.log('exchangeCount1:' + exchangeCount);
+    exchangeCount = exchangeCount + remain * btcToDogefromexmoList.buy.valuePerCoin[i];
+    console.log('exchangeCount2:' + exchangeCount);
     return exchangeCount;
 }

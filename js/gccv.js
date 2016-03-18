@@ -1,26 +1,28 @@
-var btcOfBtctrade;
-var btcOfExmo;
-var dogeOfBtctrade;
+var rmbToBtcAtBtctradeList;
+var usdToBtcAtExmoList;
+var rmbToDogeAtBtctradeList;
+var dogeToUsdAtBtctradeList;
+var btcToDogefromexmoList;
 var dogeOfExmo;
 
-function getBtcFromExmo() {
-    url = 'exmo/getbtclistfromexmo.php';
+function getUsdToBtcAtExmoList() {
+    url = 'exmo/getUsdToBtcfromexmo.php';
     $.ajax({
         type: 'GET',
         url: url,
         success: function(msg) {
-            btcOfExmo = JSON.parse(msg);
+            usdToBtcAtExmoList = JSON.parse(msg);
         }
     });
 }
 
-function getBtcFromBtctrade() {
+function getRmbToBtcAtBtctradeList() {
     url = 'btctrade/getbtclistfrombtctrade.php';
     $.ajax({
         type: 'GET',
         url: url,
         success: function(msg) {
-            btcOfBtctrade = JSON.parse(msg);
+            rmbToBtcAtBtctradeList = JSON.parse(msg);
         }
     });
 }
@@ -36,30 +38,46 @@ function getDogeFromExmo() {
     });
 }
 
-function getDogeFromBtctrade() {
+function getRmbToDogeAtBtctradeList() {
     url = 'btctrade/getdogelistfrombtctrade.php';
     $.ajax({
         type: 'GET',
         url: url,
         success: function(msg) {
-            dogeOfBtctrade = JSON.parse(msg);
+            rmbToDogeAtBtctradeList = JSON.parse(msg);
+        }
+    });
+}
+
+function getBtcToDogeAtExmoList() {
+    url = 'exmo/getBtcToDogefromexmo.php';
+    $.ajax({
+        type: 'GET',
+        url: url,
+        success: function(msg) {
+            btcToDogefromexmoList = JSON.parse(msg);
         }
     });
 }
 
 $(document).ready(function() {
 
-    getBtcFromExmo();
-    getBtcFromBtctrade();
-    getDogeFromExmo();
-    getDogeFromBtctrade();
+    getUsdToBtcAtExmoList();
+    getRmbToBtcAtBtctradeList();
+    //getDogeFromExmo();
+    getRmbToDogeAtBtctradeList();
+    getBtcToDogeAtExmoList();
 
-    $('#btctrade').click(function() {
-        console.log(btcOfBtctrade);
+    $('#rmbToBtcAtBtctradeList').click(function() {
+        console.log(rmbToBtcAtBtctradeList);
     });
 
-    $('#exmo').click(function() {
-        console.log(btcOfExmo);
+    $('#usdToBtcAtExmoList').click(function() {
+        console.log(usdToBtcAtExmoList);
+    });
+
+    $('#btcToDogefromexmoList').click(function() {
+        console.log(btcToDogefromexmoList);
     });
 
     /*
