@@ -3,7 +3,7 @@
 //system("/bin/bash /var/www/getcalccoinvaluephp/wgetpost.sh");
 //$data = file_get_contents('book_btc.json');
 
-$url = 'book_doge.json';
+$url = 'book_DogeToBtc.json';
 
 $contents = file_get_contents($url);
 
