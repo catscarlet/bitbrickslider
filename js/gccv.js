@@ -3,7 +3,7 @@ var usdToBtcAtExmoList;
 var rmbToDogeAtBtctradeList;
 var dogeToUsdAtBtctradeList;
 var btcToDogefromexmoList;
-var dogeOfExmo;
+//var dogeOfExmo;
 
 function getUsdToBtcAtExmoList() {
     url = 'exmo/getUsdToBtcfromexmo.php';
@@ -27,6 +27,7 @@ function getRmbToBtcAtBtctradeList() {
     });
 }
 
+/*
 function getDogeFromExmo() {
     url = 'exmo/getdogelistfromexmo.php';
     $.ajax({
@@ -37,6 +38,7 @@ function getDogeFromExmo() {
         }
     });
 }
+*/
 
 function getRmbToDogeAtBtctradeList() {
     url = 'btctrade/getdogelistfrombtctrade.php';
