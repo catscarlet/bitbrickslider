@@ -6,7 +6,6 @@
           value: 2700,
           start: function(event, ui) {
               //console.log('start');
-
           },
           stop: function(event, ui) {
               //console.log('stop');
@@ -23,24 +22,41 @@ function getSliderValue() {
     r0b1b2d2d1r(value);
 }
 
-function r0b1b2d2d1r(r0) {
-    $('#value0').text(r0);
+function r0b1b2d2d1r(pay) {
+    $('#value0').text(pay);
+
+    var r0 = transfers(pay,'Percent',0.3);
+    $('#value1').text(r0);
+    $('#loss1').text((r0 - pay).toFixed(8));
+
     var b1 = stepwiseBuy(r0, rmbToBtcAtBtctradeList);
-    $('#value1').text(b1);
-    var b2 = transBtcFromBtctrade(b1);
-    $('#value2').text(b2);
-    $('#loss2').text((b2 - b1).toFixed(8));
+    $('#value2').text(b1);
+    //$('#loss2').text((b2 - b1).toFixed(8));
+
+    var b2 = transfers(b1,'Fixed_Value',0.002);
+    $('#value3').text(b2);
+    $('#loss3').text((b2 - b1).toFixed(8));
+
     var d2 = stepwiseBuy(b2, btcToDogefromexmoList);
-    $('#value3').text(d2);
-    var d1 = transDogeAtexmo(d2);
-    $('#value4').text(d1);
-    $('#loss4').text(d2 - d1);
-    var rmb = stepwiseSell(d1, rmbToDogeAtBtctradeList,'rmbToDogeAtBtctradeList');
-    $('#value5').text(rmb);
+    $('#value4').text(d2);
+    //$('#loss4').text((b2 - b1).toFixed(8));
+
+    var d1 = transfers(d2,'Fixed_Value',1);
+    $('#value5').text(d1);
+    $('#loss5').text(d2 - d1);
+
+    var r1 = stepwiseSell(d1, rmbToDogeAtBtctradeList,'rmbToDogeAtBtctradeList');
+    $('#value6').text(r1);
+
+    var rmb = transfers(r1,'Percent',0.4);
+    $('#value7').text(d1);
+    $('#loss7').text(d2 - d1);
+    //suary
+
     var earn = (rmb - r0).toFixed(8);
-    $('#value6').text(earn);
     var earnPercent = (earn / r0) * 100;
-    $('#loss6').text(earnPercent.toFixed(2) + '%');
+    $('#value8').text(earn);
+    $('#loss8').text(earnPercent.toFixed(2) + '%');
 }
 
 function rmbToBtcAtBtctrade(pay) {
@@ -168,4 +184,19 @@ function withdrawRmbAtBtctrade(rmb1) {
     var cost = 0;
     rmb2 = rmb1 - cost;
     return rmb2;
+}
+
+function transfers(pay, fee_method, fee) {
+    var rmb2;
+    var cost = 0;
+    if (fee_method == 'Percent') {
+        exchangeValue = pay * ((100 - fee) / 100);
+        return exchangeValue;
+    } else if (fee_method == 'Fixed_Value') {
+        exchangeValue = pay - fee;
+        return exchangeValue;
+    } else {
+        console.log('transfers error');
+        return false;
+    }
 }
