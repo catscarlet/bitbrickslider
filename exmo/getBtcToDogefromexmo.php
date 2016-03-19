@@ -1,9 +1,12 @@
 <?php
 
+//BtcToDoge means DOGE/BTC page. Buy DOGE using BTC.
+
+
 //system("/bin/bash /var/www/getcalccoinvaluephp/wgetpost.sh");
 //$data = file_get_contents('book_btc.json');
 
-$url = 'book_DogeToBtc.json';
+$url = 'book_BtcToDoge.json';
 
 $contents = file_get_contents($url);
 

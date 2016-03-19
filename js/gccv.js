@@ -3,7 +3,7 @@ var usdToBtcAtExmoList;
 var rmbToDogeAtBtctradeList;
 var dogeToUsdAtBtctradeList;
 var btcToDogefromexmoList;
-//var dogeOfExmo;
+
 
 function getUsdToBtcAtExmoList() {
     url = 'exmo/getUsdToBtcfromexmo.php';

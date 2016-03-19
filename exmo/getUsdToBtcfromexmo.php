@@ -1,9 +1,12 @@
 <?php
 
+//usdToBtc means BTC/USD page. Buy BTC using USD.
+
+
 //system("/bin/bash /var/www/getcalccoinvaluephp/wgetpost.sh");
 //$data = file_get_contents('book_btc.json');
 
-$url = 'book_BtcToUsd.json';
+$url = 'book_UsdToBtc.json';
 
 $contents = file_get_contents($url);
 
