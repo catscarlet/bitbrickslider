@@ -3,7 +3,7 @@ var usdToBtcAtExmoList;
 var rmbToDogeAtBtctradeList;
 var dogeToUsdAtBtctradeList;
 var btcToDogefromexmoList;
-var dogeOfExmo;
+
 
 function getUsdToBtcAtExmoList() {
     url = 'exmo/getUsdToBtcfromexmo.php';
@@ -23,17 +23,6 @@ function getRmbToBtcAtBtctradeList() {
         url: url,
         success: function(msg) {
             rmbToBtcAtBtctradeList = JSON.parse(msg);
-        }
-    });
-}
-
-function getDogeFromExmo() {
-    url = 'exmo/getdogelistfromexmo.php';
-    $.ajax({
-        type: 'GET',
-        url: url,
-        success: function(msg) {
-            dogeOfExmo = JSON.parse(msg);
         }
     });
 }
@@ -64,7 +53,6 @@ $(document).ready(function() {
 
     getUsdToBtcAtExmoList();
     getRmbToBtcAtBtctradeList();
-    //getDogeFromExmo();
     getRmbToDogeAtBtctradeList();
     getBtcToDogeAtExmoList();
 
@@ -79,12 +67,6 @@ $(document).ready(function() {
     $('#btcToDogefromexmoList').click(function() {
         console.log(btcToDogefromexmoList);
     });
-
-    /*
-        $('#draw').click(function() {
-            getDrawBtctrade();
-        });
-*/
 
     $('#getSlider').click(function() {
         getSliderValue();
