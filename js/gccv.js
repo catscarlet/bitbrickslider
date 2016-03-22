@@ -1,10 +1,9 @@
 var rmbToBtcAtBtctradeList;
-var usdToBtcAtExmoList;
+//var usdToBtcAtExmoList;
 var rmbToDogeAtBtctradeList;
-var dogeToUsdAtBtctradeList;
 var btcToDogefromexmoList;
 
-
+/*
 function getUsdToBtcAtExmoList() {
     url = 'exmo/getUsdToBtcfromexmo.php';
     $.ajax({
@@ -15,43 +14,52 @@ function getUsdToBtcAtExmoList() {
         }
     });
 }
+*/
 
 function getRmbToBtcAtBtctradeList() {
+    $('#rmbToBtcAtBtctradeList').prop('disabled', true);
     url = 'btctrade/getbtclistfrombtctrade.php';
     $.ajax({
         type: 'GET',
         url: url,
         success: function(msg) {
             rmbToBtcAtBtctradeList = JSON.parse(msg);
+            $('#rmbToBtcAtBtctradeList').prop('disabled', false);
         }
     });
 }
 
 function getRmbToDogeAtBtctradeList() {
+    $('#rmbToDogeAtBtctradeList').prop('disabled', true);
     url = 'btctrade/getdogelistfrombtctrade.php';
     $.ajax({
         type: 'GET',
         url: url,
         success: function(msg) {
             rmbToDogeAtBtctradeList = JSON.parse(msg);
+            $('#rmbToDogeAtBtctradeList').prop('disabled', false);
         }
     });
 }
 
 function getBtcToDogeAtExmoList() {
+    $('#btcToDogefromexmoList').prop('disabled', true);
     url = 'exmo/getBtcToDogefromexmo.php';
     $.ajax({
         type: 'GET',
         url: url,
         success: function(msg) {
             btcToDogefromexmoList = JSON.parse(msg);
+            $('#btcToDogefromexmoList').prop('disabled', false);
         }
     });
 }
 
 $(document).ready(function() {
 
-    getUsdToBtcAtExmoList();
+
+
+    //getUsdToBtcAtExmoList();
     getRmbToBtcAtBtctradeList();
     getRmbToDogeAtBtctradeList();
     getBtcToDogeAtExmoList();
@@ -60,16 +68,21 @@ $(document).ready(function() {
         console.log(rmbToBtcAtBtctradeList);
     });
 
-    $('#usdToBtcAtExmoList').click(function() {
-        console.log(usdToBtcAtExmoList);
-    });
-
     $('#btcToDogefromexmoList').click(function() {
         console.log(btcToDogefromexmoList);
+    });
+
+    $('#rmbToDogeAtBtctradeList').click(function() {
+        console.log(rmbToDogeAtBtctradeList);
+    });
+
+    $('#freshall').click(function() {
+        getRmbToBtcAtBtctradeList();
+        getRmbToDogeAtBtctradeList();
+        getBtcToDogeAtExmoList();
     });
 
     $('#getSlider').click(function() {
         getSliderValue();
     });
-
 });
