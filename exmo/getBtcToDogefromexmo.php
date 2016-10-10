@@ -3,7 +3,7 @@
 //BtcToDoge means DOGE/BTC page. Buy DOGE using BTC.
 
 
-//system("/bin/bash /var/www/getcalccoinvaluephp/wgetpost.sh");
+//system("/bin/bash /var/www/bitbrickslider/exmo/download_order.sh");
 //$data = file_get_contents('book_btc.json');
 
 $url = 'book_BtcToDoge.json';
