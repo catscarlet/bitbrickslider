@@ -1,80 +1,85 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="utf-8">
-  <title>Get Calculate Coin Value</title>
-  <script type="text/javascript" src="lib/js/jquery-1.11.3.min.js"></script>
-  <script type="text/javascript" src="js/gccv.js"></script>
-  <script type="text/javascript" src="js/drawCharts.js"></script>
-  <script type="text/javascript" src="js/drawSlider.js"></script>
-  <script type="text/javascript" src="lib/js/highchart/highcharts.js"></script>
-  <script type="text/javascript" src="lib/js/jquery-ui-1.11.4/jquery-ui.js"></script>
-  <link rel="stylesheet" href="lib/js/jquery-ui-1.11.4/jquery-ui.css">
-</head>
+    <head>
+        <meta charset="utf-8">
+        <title>Get Calculate Coin Value</title>
+        <script type="text/javascript" src="lib/js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/gccv.js"></script>
+        <script type="text/javascript" src="js/drawCharts.js"></script>
+        <script type="text/javascript" src="js/drawSlider.js"></script>
+        <script type="text/javascript" src="lib/js/highchart/highcharts.js"></script>
+        <script type="text/javascript" src="lib/js/jquery-ui-1.11.4/jquery-ui.js"></script>
+        <link rel="stylesheet" href="lib/js/jquery-ui-1.11.4/jquery-ui.css">
+    </head>
 
-<body>
-  <button id="rmbToBtcAtBtctradeList" type="button" name="button">rmbToBtcAtBtctradeList</button>
-  <button id="btcToDogefromexmoList" type="button" name="button">btcToDogefromexmoList</button>
-  <button id="rmbToDogeAtBtctradeList" type="button" name="button">rmbToDogeAtBtctradeList</button>
-  <button id="refreshall" type="button" name="button">refreshall</button>
-  <button id="getSlider" type="button" name="button">getSliderValue</button>
-  <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-  <input id="input1" type="text" name="input1" value="0">
-  <button id="useInput" type="button" name="button">useInput</button>
-  <button id="auto1" type="button" name="button">Auto1</button>
-  <button id="auto2" type="button" name="button">Auto2</button>
-  <table id="table1" border="1">
-    <tr>
-      <td width="50"></td>
-      <td width="160">pay</td>
-      <td width="160">exchange 1</td>
-      <td width="160">exchange 2</td>
-      <td width="160">exchange 3</td>
-      <td width="160">exchange 4</td>
-      <td width="160">exchange 5</td>
-      <td width="160">exchange 6</td>
-      <td width="160">exchange 7</td>
-      <td width="160">reward</td>
-    </tr>
-    <tr>
-      <td width="50">name:</td>
-      <td id="input0">name</td>
-      <td id="output1">name</td>
-      <td id="output2">name</td>
-      <td id="output3">name</td>
-      <td id="output4">name</td>
-      <td id="output5">name</td>
-      <td id="output6">name</td>
-      <td id="output7">name</td>
-      <td id="output8">name</td>
-    </tr>
-    <tr>
-      <td width="50">value</td>
-      <td id="value0">0</td>
-      <td id="value1">0</td>
-      <td id="value2">0</td>
-      <td id="value3">0</td>
-      <td id="value4">0</td>
-      <td id="value5">0</td>
-      <td id="value6">0</td>
-      <td id="value7">0</td>
-      <td id="value8">0</td>
-    </tr>
-    <tr>
-      <td width="50">loss</td>
-      <td id="loss0">0</td>
-      <td id="loss1">0</td>
-      <td id="loss2">0</td>
-      <td id="loss3">0</td>
-      <td id="loss4">0</td>
-      <td id="loss5">0</td>
-      <td id="loss6">0</td>
-      <td id="loss7">0</td>
-      <td id="loss8">0</td>
-    </tr>
-  </table>
-  <div id="slider"></div>
-</body>
+    <body>
+        <button id="rmbToBtcAtBtctradeList" type="button" name="button">rmbToBtcAtBtctradeList</button>
+        <button id="btcToDogefromexmoList" type="button" name="button">btcToDogefromexmoList</button>
+        <button id="rmbToDogeAtBtctradeList" type="button" name="button">rmbToDogeAtBtctradeList</button>
+        <button id="refreshall" type="button" name="button">refreshall</button>
+        <button id="getSlider" type="button" name="button">getSliderValue</button>
+
+        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+        <input id="input1" type="text" name="input1" value="0">
+
+        <button id="useInput1" type="button" name="button">useInput1</button>
+        <button id="useInput2" type="button" name="button">useInput2</button>
+
+        <button id="auto1" type="button" name="button">Auto1</button>
+        <button id="auto2" type="button" name="button">Auto2</button>
+        <table id="table1" border="1">
+            <tr>
+                <td width="50"></td>
+                <td width="160">pay</td>
+                <td width="160">exchange 1</td>
+                <td width="160">exchange 2</td>
+                <td width="160">exchange 3</td>
+                <td width="160">exchange 4</td>
+                <td width="160">exchange 5</td>
+                <td width="160">exchange 6</td>
+                <td width="160">exchange 7</td>
+                <td width="160">reward</td>
+            </tr>
+            <tr>
+                <td width="50">name:</td>
+                <td id="input0">name</td>
+                <td id="output1">name</td>
+                <td id="output2">name</td>
+                <td id="output3">name</td>
+                <td id="output4">name</td>
+                <td id="output5">name</td>
+                <td id="output6">name</td>
+                <td id="output7">name</td>
+                <td id="output8">name</td>
+            </tr>
+            <tr>
+                <td width="50">value</td>
+                <td id="value0">0</td>
+                <td id="value1">0</td>
+                <td id="value2">0</td>
+                <td id="value3">0</td>
+                <td id="value4">0</td>
+                <td id="value5">0</td>
+                <td id="value6">0</td>
+                <td id="value7">0</td>
+                <td id="value8">0</td>
+            </tr>
+            <tr>
+                <td width="50">loss</td>
+                <td id="loss0">0</td>
+                <td id="loss1">0</td>
+                <td id="loss2">0</td>
+                <td id="loss3">0</td>
+                <td id="loss4">0</td>
+                <td id="loss5">0</td>
+                <td id="loss6">0</td>
+                <td id="loss7">0</td>
+                <td id="loss8">0</td>
+            </tr>
+        </table>
+        <div id="slider"></div>
+    </body>
 
 </html>

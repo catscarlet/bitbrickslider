@@ -1,6 +1,6 @@
 function drawCharts(data) {
     middleValue = (data.buy.valuePerCoin[0] + data.sale.valuePerCoin[0]) / 2;
-    //doublerange = (middleValue - data.buy.values[49]).toFixed(2);
+
     chartData = new Array;
 
     xOfBuy = data.buy.valuePerCoin;
@@ -10,7 +10,7 @@ function drawCharts(data) {
     for (var i = 0 ; i < data.buy.valuePerCoin.length; i++) {
         unit_price = xOfBuy[i];
         sumOfPrice = yOfBuy[i];
-        //console.log([x[i],y[i]]);
+
         chartData[data.buy.valuePerCoin.length - 1 - i ] = [unit_price,sumOfPrice];
     }
 

@@ -1,6 +1,3 @@
-//var dataX = new Array;
-//var dataY = new Array;
-
 $(function() {
     $('#slider').slider({
         min: 1,
@@ -22,10 +19,16 @@ $(function() {
 
 
 $(document).ready(function() {
-    $('#useInput').click(function() {
-        inputValue1 = $('#input1').val();
+    $('#useInput1').click(function() {
+        var inputValue1 = $('#input1').val();
         $('#slider').slider('value', inputValue1);
         r0d1d2b2b1r(inputValue1);
+    });
+
+    $('#useInput2').click(function() {
+        var inputValue1 = $('#input1').val();
+        $('#slider').slider('value', inputValue1);
+        r0b1b2d2d1r(inputValue1);
     });
 
     $('#auto1').click(function() {
