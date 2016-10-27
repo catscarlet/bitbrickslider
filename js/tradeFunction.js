@@ -34,7 +34,8 @@ function stepwiseBuy(pay, priceList, whocallme) {
     //console.log('exchangeCount1:' + exchangeCount);
     exchangeCount = exchangeCount + remain / priceList.sale[i].valuePerCoin;
     //console.log('exchangeCount2:' + exchangeCount);
-    return exchangeCount.toFixed(8);;
+    exchangeCountAfterFee = exchangeCount * (1 - fee);
+    return exchangeCountAfterFee.toFixed(8);;
 }
 
 
@@ -71,7 +72,8 @@ function stepwiseSell(pay, priceList, whocallme) {
     //console.log('exchangeCount1:' + exchangeCount);
     exchangeCount = exchangeCount + remain * priceList.buy[i].valuePerCoin;
     //console.log('exchangeCount2:' + exchangeCount);
-    return exchangeCount.toFixed(8);
+    exchangeCountAfterFee = exchangeCount * (1 - fee);
+    return exchangeCountAfterFee.toFixed(8);
 
 }
 

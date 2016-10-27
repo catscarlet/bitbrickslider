@@ -19,9 +19,15 @@ $(function() {
 
 $(document).ready(function() {
     $('#useInput1').click(function() {
+        var input00 = $('#input1').val();
+        var best_rst = way00(input00);
+        setTable(best_rst);
+
     });
     $('#auto1').click(function() {
-        brickslider();
+        var best_rst = brickslider();
+        var input00 = best_rst.data.input00;
+        $('#input1').val(input00);
     });
 
 });
@@ -35,11 +41,10 @@ function getSliderValue(value) {
 
 function setTable(rst) {
     var data = rst.data;
-    var x = rst.input00;
-    var y = rst.output;
+    var x = parseFloat(data.input00);
+    var y = parseFloat(rst.output);
     benefit = y - x;
     benefit_percent = benefit / x;
-
     console.log(rst);
     $('#input00').text(data.input00);
     $('#output00').text(data.output00);

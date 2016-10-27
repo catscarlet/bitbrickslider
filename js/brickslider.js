@@ -29,5 +29,5 @@ function brickslider() {
     console.log('max_benefit_percent: ' + max_benefit_percent);
     best_rst = rst = way01(max_x);
     setTable(best_rst);
-    return max_x;
+    return best_rst;
 }
